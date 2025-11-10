@@ -1,19 +1,21 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import Header from "../Components/Header";
+import Logo from "../Components/Logo";
 import "./App.css";
+import Navbar from "../Components/Navbar";
+import Section from "../Components/Section";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <div></div>
-      <h1>NC News</h1>
-      <div className="">
-        <p>Hello NC News</p>
-      </div>
-      <p className=""></p>
+      <header className="header">
+        <Logo />
+        <Header />
+      </header>
+      <Navbar />
+      <Section />
     </>
   );
 }
