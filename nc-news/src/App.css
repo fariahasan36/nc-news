@@ -3,6 +3,11 @@
   margin: 0 auto;
   text-align: center;
   border: 2px solid white;
+  background-color: rgb(224, 214, 214);
+  color: #a82525;
+  font: 1rem "Fira Sans", sans-serif;
+  line-height: 1rem;
+  border-radius: 10px;
 }
 .logo {
   width: 50px;
@@ -14,6 +19,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 1.5rem 0;
 }
 .header-text {
   padding-top: 0;
@@ -60,6 +66,30 @@ ul li a:hover {
   /* width: 100%; */
 }
 .articles {
-  padding: 2.5rem 1rem 0.5rem 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 2.5rem 0rem 1.5rem 1rem;
+  margin: 0.5rem 1.1rem 17.6px;
   width: 40%;
+}
+.articles:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.search-article {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0rem;
+  gap: 0.5em;
+}
+.btn-search-articles {
+  background-color: #a82525;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.inp-search-article {
+  background-color: white;
+  padding: 0.3rem;
+  border-radius: 3px;
 }
