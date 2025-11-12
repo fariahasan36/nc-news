@@ -1,12 +1,13 @@
-export default function Navbar() {
+import { Link } from "react-router";
+export default function Navbar({ articleId }) {
   return (
     <>
       <ul className="nav">
         <li>
-          <a href="#home">Articles</a>
+          <Link to="/">Articles</Link>
         </li>
         <li>
-          <a href="#news">Comments</a>
+          <Link to={`/articles/${articleId}/comments`}>Comments</Link>
         </li>
         <li>
           <a href="#contact">Topics</a>

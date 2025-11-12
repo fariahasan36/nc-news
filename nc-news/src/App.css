@@ -1,5 +1,6 @@
 #root {
   max-width: 1000px;
+  min-height: 800px;
   margin: 0 auto;
   text-align: center;
   border: 2px solid white;
@@ -52,7 +53,7 @@ ul li a:hover {
   justify-content: space-around;
   margin: 0 auto;
 }
-.cooking-img {
+.article-img {
   width: 40%;
   height: 40%;
 }
@@ -61,11 +62,9 @@ ul li a:hover {
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  /* padding: 1rem 1rem; */
-  /* height: auto; */
-  /* width: 100%; */
 }
 .articles {
+  justify-content: left;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   padding: 2.5rem 0rem 1.5rem 1rem;
@@ -92,4 +91,34 @@ ul li a:hover {
   background-color: white;
   padding: 0.3rem;
   border-radius: 3px;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  background-color: #a82525;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 480px;
+}
+.single-article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 2rem 0.5rem 2rem;
+  /* width: 80%; */
+}
+.single-article-img {
+  margin-inline-start: 0.5rem;
+  padding: 0 2rem 0.5rem 2rem;
+}
+.comments {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 1rem 0rem 1rem 1rem;
+  margin: 0.5rem 1.1rem 17.6px;
+  width: 40%;
+}
+.comments:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
