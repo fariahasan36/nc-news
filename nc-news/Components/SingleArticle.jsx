@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchArticleById, PatchArticlesByArticleId } from "../api";
+import { fetchArticleById, patchArticlesByArticleId } from "../api";
 import { Link, useParams } from "react-router";
 
 export default function SingleArticle() {
@@ -25,7 +25,7 @@ export default function SingleArticle() {
 
   function increaseVoteByArticleId() {
     setArticle({ ...article, votes: article.votes + 1 });
-    PatchArticlesByArticleId(article_id, 1)
+    patchArticlesByArticleId(article_id, 1)
       .then(() => {
         return fetchArticleById(article_id);
       })

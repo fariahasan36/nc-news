@@ -1,14 +1,25 @@
 import { useState, useEffect } from "react";
-import { fetchArticleById, fetchCommentsByArticleId } from "../api.js";
+import {
+  fetchArticleById,
+  fetchCommentsByArticleId,
+  postCommentByArticleId,
+} from "../api.js";
 import { useParams } from "react-router";
 
 export default function CommentsByArticleId() {
   const [article, setArticle] = useState({});
   const [comments, setComments] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [userComment, setUserComment] = useState("");
+  const [successComment, setSuccessComment] = useState("");
 
   let params = useParams();
   //   //   console.log(params.id);
+
+  function handleUserCommentChange(event) {
+    setUserComment(event.target.value);
+  }
 
   useEffect(() => {
     fetchArticleById(params.id)
@@ -22,6 +33,27 @@ export default function CommentsByArticleId() {
         });
       });
   }, []);
+
+  const { article_id } = article;
+
+  function addComment() {
+    const username = "grumpy19";
+
+    if (!userComment) {
+      return setError("Please insert a comment.");
+    }
+    postCommentByArticleId(article_id, userComment, username).then((data) => {
+      fetchCommentsByArticleId(article_id)
+        .then((data) => {
+          setComments(data.comments);
+          setLoading(false);
+          setSuccessComment("Comment created successfully.");
+        })
+        .catch((error) => {
+          setError(error);
+        });
+    });
+  }
 
   if (isLoading) return <p>Loading</p>;
   return (
@@ -47,6 +79,17 @@ export default function CommentsByArticleId() {
           );
         })}
       </main>
+      <label className="lb-comment-text">
+        Please comment here:{" "}
+        <textarea
+          value={userComment}
+          onChange={handleUserCommentChange}
+          className="comment-text"
+          id="comment"
+        ></textarea>
+        <button onClick={addComment}>Add Comment</button>
+        <p>{successComment}</p>
+      </label>
     </>
   );
 }
