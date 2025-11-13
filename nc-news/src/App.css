@@ -10,6 +10,12 @@
   line-height: 1rem;
   border-radius: 10px;
 }
+button {
+  background-color: #a82525;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
 .logo {
   width: 50px;
   height: 10%;

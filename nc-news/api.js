@@ -1,6 +1,9 @@
 export function fetchAllArticleList() {
   return fetch(`https://seeding-nc-news-097y.onrender.com/api/articles/`).then(
     (res) => {
+      if (!res.ok) {
+        throw new Error("Cannot get articles");
+      }
       return res.json();
     }
   );
@@ -10,6 +13,9 @@ export function fetchArticleById(articleId) {
   return fetch(
     `https://seeding-nc-news-097y.onrender.com/api/articles/${articleId}`
   ).then((res) => {
+    if (!res.ok) {
+      throw new Error("Cannot get article");
+    }
     return res.json();
   });
 }
@@ -18,6 +24,9 @@ export function fetchCommentsByArticleId(articleId) {
   return fetch(
     `https://seeding-nc-news-097y.onrender.com/api/articles/${articleId}/comments`
   ).then((res) => {
+    if (!res.ok) {
+      throw new Error("Cannot get comments");
+    }
     return res.json();
   });
 }
@@ -35,6 +44,9 @@ export function patchArticlesByArticleId(articleId, votes) {
       }),
     }
   ).then((res) => {
+    if (!res.ok) {
+      throw new Error("Cannot update article");
+    }
     return res.json();
   });
 }
@@ -57,5 +69,19 @@ export function postCommentByArticleId(articleId, comment_body, user_name) {
       throw new Error("Cannot post a comment");
     }
     return res.json();
+  });
+}
+
+export function deleteCommentByCommentId(commentId) {
+  return fetch(
+    `https://seeding-nc-news-097y.onrender.com/api/comments/${commentId}`,
+    {
+      method: "DELETE",
+    }
+  ).then((res) => {
+    if (!res.ok) throw new Error("Cannot delete comment");
+    console.log("DElete a comment");
+    console.log(res);
+    return res.status;
   });
 }

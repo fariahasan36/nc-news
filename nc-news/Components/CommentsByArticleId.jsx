@@ -3,6 +3,7 @@ import {
   fetchArticleById,
   fetchCommentsByArticleId,
   postCommentByArticleId,
+  deleteCommentByCommentId,
 } from "../api.js";
 import { useParams } from "react-router";
 
@@ -15,10 +16,19 @@ export default function CommentsByArticleId() {
   const [successComment, setSuccessComment] = useState("");
 
   let params = useParams();
-  //   //   console.log(params.id);
 
   function handleUserCommentChange(event) {
     setUserComment(event.target.value);
+  }
+
+  function deleteComment(commentId) {
+    deleteCommentByCommentId(commentId).then(() => {
+      fetchCommentsByArticleId(params.id).then((data) => {
+        setComments(data.comments);
+        setLoading(false);
+        setSuccessComment("Your comment is deleted!");
+      });
+    });
   }
 
   useEffect(() => {
@@ -35,10 +45,8 @@ export default function CommentsByArticleId() {
   }, []);
 
   const { article_id } = article;
-
+  const username = "grumpy19";
   function addComment() {
-    const username = "grumpy19";
-
     if (!userComment) {
       return setError("Please insert a comment.");
     }
@@ -48,6 +56,7 @@ export default function CommentsByArticleId() {
           setComments(data.comments);
           setLoading(false);
           setSuccessComment("Comment created successfully.");
+          setUserComment("");
         })
         .catch((error) => {
           setError(error);
@@ -64,17 +73,20 @@ export default function CommentsByArticleId() {
       <main className="main-section">
         {comments.map((element) => {
           return (
-            <article
-              key={element.comment_id}
-              className="comments"
-              onClick={() => {
-                getSingleArticle(element.comment_id);
-              }}
-            >
+            <article key={element.comment_id} className="comments">
               <p>Author: {element.author}</p>
               <p>Votes: {element.votes}</p>
               <p>Comment Body: {element.comment_body}</p>
               <p>Created At: {new Date(element.created_at).toUTCString()} </p>
+              {element.author == username && (
+                <button
+                  onClick={() => {
+                    deleteComment(element.comment_id);
+                  }}
+                >
+                  Delete Comment
+                </button>
+              )}
             </article>
           );
         })}
