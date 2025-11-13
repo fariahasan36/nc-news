@@ -10,7 +10,7 @@ export default function Navbar({ articleId }) {
           <Link to={`/articles/${articleId}/comments`}>Comments</Link>
         </li>
         <li>
-          <a href="#contact">Topics</a>
+          <Link to={"/topics"}>Topics</Link>
         </li>
         <li>
           <a href="#about">Users</a>

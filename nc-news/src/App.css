@@ -145,3 +145,14 @@ ul li a:hover {
   width: 20%;
   color: #a82525;
 }
+.topics {
+  justify-content: left;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 1.5rem 0.5rem 1.5rem 0.5rem;
+  margin: 0.5rem 1.1rem 17.6px;
+  width: 40%;
+}
+.topic-name {
+  color: #a82525;
+}

@@ -8,7 +8,16 @@ export function fetchAllArticleList() {
     }
   );
 }
-
+export function fetchAllArticleListByTopic(topic) {
+  return fetch(
+    `https://seeding-nc-news-097y.onrender.com/api/articles/?topic=${topic}`
+  ).then((res) => {
+    if (!res.ok) {
+      throw new Error("Cannot get articles by topic");
+    }
+    return res.json();
+  });
+}
 export function fetchArticleById(articleId) {
   return fetch(
     `https://seeding-nc-news-097y.onrender.com/api/articles/${articleId}`
@@ -80,8 +89,17 @@ export function deleteCommentByCommentId(commentId) {
     }
   ).then((res) => {
     if (!res.ok) throw new Error("Cannot delete comment");
-    console.log("DElete a comment");
-    console.log(res);
     return res.status;
   });
+}
+
+export function fetchAllTopics() {
+  return fetch(`https://seeding-nc-news-097y.onrender.com/api/topics`).then(
+    (res) => {
+      if (!res.ok) {
+        throw new Error("Cannot get topics");
+      }
+      return res.json();
+    }
+  );
 }
