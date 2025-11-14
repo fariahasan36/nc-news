@@ -97,6 +97,7 @@ ul li a:hover {
   background-color: white;
   padding: 0.3rem;
   border-radius: 3px;
+  color: #a82525;
 }
 .footer {
   display: flex;

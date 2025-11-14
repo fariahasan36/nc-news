@@ -6,7 +6,7 @@ import Navbar from "../Components/Navbar";
 import SearchArticles from "../Components/SearchArticles";
 import SingleArticle from "../Components/SingleArticle";
 import Section from "../Components/Section";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useSearchParams } from "react-router";
 import Footer from "../Components/Footer";
 import CommentsByArticleId from "../Components/CommentsByArticleId";
 import Topic from "../Components/Topic";
@@ -14,12 +14,22 @@ import ArticleByTopic from "../Components/ArticleByTopic";
 
 function App() {
   const [articleTopic, setArticleTopic] = useState("");
+  const [sortBy, setSortBy] = useState("created_at");
+  const [orderBy, setOrderBy] = useState("DESC");
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [articleId, setArticleId] = useState(12);
   const [articles, setArticles] = useState([]);
 
-  function handleClick(id) {
-    setArticleTopic(id);
+  function handleClick(newTopic, newSortBy, newOrderBy) {
+    setArticleTopic(newTopic);
+    setSortBy(newSortBy);
+    setOrderBy(newOrderBy);
+    setSearchParams(
+      `?sort_by=${newSortBy}&order=${newOrderBy}&topic=${newTopic}`
+    );
   }
+
   function getArticleById(id) {
     setArticleId(id);
   }
@@ -38,14 +48,19 @@ function App() {
 
       <Routes>
         <Route
-          path="/"
+          path="/articles"
           element={
             <>
               <SearchArticles
                 valueOfArticleTopic={articleTopic}
                 handleClick={handleClick}
               />
-              <Section topic={articleTopic} getSingleArticle={getArticleById} />
+              <Section
+                topic={articleTopic}
+                getSingleArticle={getArticleById}
+                articleSortBy={sortBy}
+                articleOrderBy={orderBy}
+              />
             </>
           }
         ></Route>

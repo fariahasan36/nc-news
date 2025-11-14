@@ -2,16 +2,26 @@ import { useState, useEffect } from "react";
 import { fetchAllArticleList } from "../api";
 import { Link } from "react-router";
 
-export default function Section({ topic, getSingleArticle }) {
+export default function Section({
+  topic,
+  getSingleArticle,
+  articleSortBy,
+  articleOrderBy,
+}) {
   const [articles, setArticles] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
+  console.log(topic);
+  console.log(articleSortBy);
+  console.log(articleOrderBy);
+
   useEffect(() => {
-    fetchAllArticleList().then((data) => {
+    console.log("First time call");
+    fetchAllArticleList(articleSortBy, articleOrderBy, topic).then((data) => {
       setArticles(data.articles);
       setLoading(false);
     });
-  }, []);
+  }, [topic, articleSortBy, articleOrderBy]);
 
   if (isLoading) return <p>Loading</p>;
   return (
@@ -19,7 +29,7 @@ export default function Section({ topic, getSingleArticle }) {
       <h2>List of Articles:</h2>
       <main className="main-section">
         {articles
-          .filter((element) => topic === "" || element.topic === topic)
+          // .filter((element) => topic === "" || element.topic === topic)
           .map((element) => {
             return (
               <article

@@ -1,12 +1,19 @@
-export function fetchAllArticleList() {
-  return fetch(`https://seeding-nc-news-097y.onrender.com/api/articles/`).then(
-    (res) => {
-      if (!res.ok) {
-        throw new Error("Cannot get articles");
-      }
-      return res.json();
-    }
+export function fetchAllArticleList(querySortBy, queryOrderBy, queryTopic) {
+  const queryStr = fetch(
+    `https://seeding-nc-news-097y.onrender.com/api/articles?` +
+      new URLSearchParams({
+        sort_by: querySortBy,
+        order: queryOrderBy,
+        topic: queryTopic,
+      }).toString()
   );
+  console.log(queryStr);
+  return queryStr.then((res) => {
+    if (!res.ok) {
+      throw new Error("Cannot get articles");
+    }
+    return res.json();
+  });
 }
 export function fetchAllArticleListByTopic(topic) {
   return fetch(
