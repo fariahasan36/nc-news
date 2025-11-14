@@ -49,7 +49,7 @@ function App() {
 
       <Routes>
         <Route
-          path="/articles"
+          path="/"
           element={
             <>
               <SearchArticles

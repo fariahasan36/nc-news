@@ -4,7 +4,7 @@ export default function Navbar({ articleId }) {
     <>
       <ul className="nav">
         <li>
-          <Link to="/articles">Articles</Link>
+          <Link to="/">Articles</Link>
         </li>
         <li>
           <Link to={`/articles/${articleId}/comments`}>Comments</Link>
