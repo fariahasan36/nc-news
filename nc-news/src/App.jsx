@@ -11,6 +11,7 @@ import Footer from "../Components/Footer";
 import CommentsByArticleId from "../Components/CommentsByArticleId";
 import Topic from "../Components/Topic";
 import ArticleByTopic from "../Components/ArticleByTopic";
+import User from "../Components/User";
 
 function App() {
   const [articleTopic, setArticleTopic] = useState("");
@@ -34,8 +35,8 @@ function App() {
     setArticleId(id);
   }
 
-  function getArticles(articles, slug) {
-    setArticles(articles);
+  function getArticles(slug) {
+    // setArticles(articles);
     setArticleTopic(slug);
   }
   return (
@@ -72,14 +73,10 @@ function App() {
         ></Route>
         <Route
           path="/topics"
-          element={<Topic getArticleByTopic={getArticles} />}
+          element={<Topic getArticle={getArticles} />}
         ></Route>
-        <Route
-          path="/topics/:topic"
-          element={
-            <ArticleByTopic articlesByTopic={articles} topic={articleTopic} />
-          }
-        ></Route>
+        <Route path="/topics/:topic" element={<ArticleByTopic />}></Route>
+        <Route path="/users" element={<User />}></Route>
       </Routes>
 
       <footer className="footer">

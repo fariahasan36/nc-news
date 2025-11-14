@@ -16,6 +16,7 @@ export function fetchAllArticleList(querySortBy, queryOrderBy, queryTopic) {
   });
 }
 export function fetchAllArticleListByTopic(topic) {
+  console.log(topic);
   return fetch(
     `https://seeding-nc-news-097y.onrender.com/api/articles/?topic=${topic}`
   ).then((res) => {
@@ -105,6 +106,17 @@ export function fetchAllTopics() {
     (res) => {
       if (!res.ok) {
         throw new Error("Cannot get topics");
+      }
+      return res.json();
+    }
+  );
+}
+
+export function fetchAllUsers() {
+  return fetch(`https://seeding-nc-news-097y.onrender.com/api/users`).then(
+    (res) => {
+      if (!res.ok) {
+        throw new Error("Cannot get users");
       }
       return res.json();
     }

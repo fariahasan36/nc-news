@@ -13,7 +13,7 @@ export default function Navbar({ articleId }) {
           <Link to={"/topics"}>Topics</Link>
         </li>
         <li>
-          <a href="#about">Users</a>
+          <Link to={"/users"}>Users</Link>
         </li>
       </ul>
     </>

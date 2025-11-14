@@ -1,21 +1,11 @@
 import { useEffect, useState } from "react";
-import { fetchAllTopics, fetchAllArticleListByTopic } from "../api.js";
+import { fetchAllTopics } from "../api.js";
 import { Link } from "react-router";
 
-export default function Topic({ getArticleByTopic }) {
+export default function Topic({ getArticle }) {
   const [topics, setTopics] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  function getArticle(slug) {
-    fetchAllArticleListByTopic(slug)
-      .then((data) => {
-        getArticleByTopic(data.articles, slug);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }
 
   useEffect(() => {
     fetchAllTopics()
@@ -26,6 +16,7 @@ export default function Topic({ getArticleByTopic }) {
       })
       .catch((error) => {
         setError(error);
+        setLoading(false);
       });
   }, []);
 
@@ -37,13 +28,13 @@ export default function Topic({ getArticleByTopic }) {
         {topics.map((element) => {
           return (
             <article key={element.slug} className="topics">
-              <Link to={`/topics/${element.slug}`}>
-                <p
-                  className="topic-name"
-                  onClick={() => {
-                    getArticle(element.slug);
-                  }}
-                >
+              <Link
+                to={`/topics/${element.slug}`}
+                onClick={() => {
+                  getArticle(element.slug);
+                }}
+              >
+                <p className="topic-name">
                   <b>Title:</b> {element.slug}
                 </p>
               </Link>

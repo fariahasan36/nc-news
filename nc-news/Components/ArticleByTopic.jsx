@@ -1,7 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { fetchAllArticleListByTopic } from "../api.js";
 
-export default function ArticleByTopic({ articlesByTopic, topic }) {
-  console.log(articlesByTopic);
+export default function ArticleByTopic() {
+  const { topic } = useParams();
+  const [articlesByTopic, setArticlesByTopic] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchAllArticleListByTopic(topic)
+      .then((data) => {
+        setArticlesByTopic(data.articles);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, [topic]);
+
   return (
     <>
       <h2>List of Articles by topic : {topic}</h2>
