@@ -22,7 +22,11 @@ function App() {
   const [articleId, setArticleId] = useState(12);
   const [articles, setArticles] = useState([]);
 
-  function handleClick(newTopic, newSortBy, newOrderBy) {
+  function handleClick(
+    newTopic: string,
+    newSortBy: string,
+    newOrderBy: string
+  ): void {
     setArticleTopic(newTopic);
     setSortBy(newSortBy);
     setOrderBy(newOrderBy);
@@ -31,11 +35,11 @@ function App() {
     );
   }
 
-  function getArticleById(id) {
+  function getArticleById(id: number): void {
     setArticleId(id);
   }
 
-  function getArticles(slug) {
+  function getArticles(slug: string): void {
     // setArticles(articles);
     setArticleTopic(slug);
   }
@@ -67,7 +71,7 @@ function App() {
         ></Route>
         <Route path="/articles/:id" element={<SingleArticle />}></Route>
         <Route
-          exact
+          // exact
           path="/articles/:id/comments"
           element={<CommentsByArticleId />}
         ></Route>

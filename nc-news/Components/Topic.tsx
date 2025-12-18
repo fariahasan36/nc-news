@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import { fetchAllTopics } from "../api.js";
 import { Link } from "react-router";
 
-export default function Topic({ getArticle }) {
-  const [topics, setTopics] = useState([]);
+interface Topic {
+  slug: string;
+  description: number;
+}
+
+export default function Topic({ getArticle }: any) {
+  const [topics, setTopics] = useState<Topic[]>([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 

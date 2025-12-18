@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import { fetchAllUsers } from "../api.js";
 
+interface User {
+  username: string;
+  name: string;
+  avatar_url: string;
+}
 export default function User() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 

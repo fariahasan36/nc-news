@@ -2,9 +2,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { fetchAllArticleListByTopic } from "../api.js";
 
+interface Article {
+  article_id: number;
+  article_img_url: string;
+  title: string;
+  author: string;
+  topic: string;
+  votes: number;
+  created_at: string;
+  comment_count: number;
+}
+
 export default function ArticleByTopic() {
   const { topic } = useParams();
-  const [articlesByTopic, setArticlesByTopic] = useState([]);
+  const [articlesByTopic, setArticlesByTopic] = useState<Article[]>([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
