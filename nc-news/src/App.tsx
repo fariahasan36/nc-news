@@ -25,13 +25,13 @@ function App() {
   function handleClick(
     newTopic: string,
     newSortBy: string,
-    newOrderBy: string
+    newOrderBy: string,
   ): void {
     setArticleTopic(newTopic);
     setSortBy(newSortBy);
     setOrderBy(newOrderBy);
     setSearchParams(
-      `?sort_by=${newSortBy}&order=${newOrderBy}&topic=${newTopic}`
+      `?sort_by=${newSortBy}&order=${newOrderBy}&topic=${newTopic}`,
     );
   }
 

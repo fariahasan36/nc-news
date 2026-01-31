@@ -1,14 +1,19 @@
 #root {
   max-width: 1000px;
-  min-height: 800px;
+  min-height: 100vh;
+
   margin: 0 auto;
   text-align: center;
   border: 2px solid white;
   background-color: rgb(224, 214, 214);
-  color: #a82525;
-  font: 1rem "Fira Sans", sans-serif;
+  color: #060101;
+  font:
+    1rem "Fira Sans",
+    sans-serif;
   line-height: 1rem;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
 button {
   background-color: #a82525;
@@ -27,6 +32,7 @@ button {
   align-items: center;
   text-align: center;
   padding: 1.5rem 0;
+  color: #a82525;
 }
 .header-text {
   padding-top: 0;
@@ -37,28 +43,49 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #a82525;
+  /* background-color: #a82525; */
 }
-ul li {
+/* ul li {
   float: left;
+  width: 250px;
+} */
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 100%;
+  justify-content: space-around;
+  max-width: auto;
+  margin: 0 auto;
+  gap: 2px;
+  /* justify-content: space-between; */
 }
-ul li a {
+
+.nav li {
+  display: flex;
+  width: calc(100% / 4);
+  max-width: 25%;
+  background-color: #a82525;
+  /* max-width: 25%; */
+  justify-content: center;
+}
+
+.nav li a:visited,
+.nav li a:link {
   display: block;
   color: white;
   text-align: center;
   padding: 10px 44px;
   text-decoration: none;
 }
-ul li a:hover {
-  background-color: #111111;
+.nav li a:hover,
+.nav li a:active {
+  background-color: #f3eeee;
   color: #a82525;
+  width: 100%;
 }
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin: 0 auto;
-}
+
 .article-img {
   width: 40%;
   height: 40%;
@@ -100,13 +127,11 @@ ul li a:hover {
   color: #a82525;
 }
 .footer {
-  display: flex;
-  justify-content: center;
   background-color: #a82525;
   color: white;
   padding: 1rem;
   border-radius: 5px;
-  margin-top: 480px;
+  margin-top: auto;
 }
 .single-article {
   display: flex;
@@ -138,6 +163,7 @@ ul li a:hover {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  padding: 4rem 0rem;
 }
 .comment-text {
   background-color: white;
@@ -168,4 +194,67 @@ ul li a:hover {
 .user-img {
   width: 40%;
   height: 40%;
+}
+
+/* Mobile Design */
+.mobile-menu-btn {
+  display: none;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  #root {
+    padding: 0 10px;
+    min-height: 100dvh;
+  }
+  .nav {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    margin-bottom: 15px;
+  }
+
+  .mobile-menu-btn .close {
+    margin-left: auto;
+    font-size: larger;
+    font-weight: bold;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-nav li {
+    display: flex;
+    width: 100%;
+    background-color: #a82525;
+  }
+
+  .mobile-nav li a:hover,
+  .mobile-nav li a:active {
+    width: 100%;
+    text-align: start;
+  }
+
+  .search-article {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-section .articles {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    padding: 2.5%;
+  }
+
+  .main-section .articles img {
+    height: auto;
+  }
 }

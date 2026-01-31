@@ -4,10 +4,14 @@ import { Link } from "react-router";
 
 interface Topic {
   slug: string;
-  description: number;
+  description: string;
 }
 
-export default function Topic({ getArticle }: any) {
+export default function Topic({
+  getArticle,
+}: {
+  getArticle: (slug: string) => void;
+}) {
   const [topics, setTopics] = useState<Topic[]>([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
